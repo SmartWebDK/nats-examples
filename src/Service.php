@@ -105,6 +105,7 @@ class Service
      *
      * @throws \NatsStreaming\Exceptions\ConnectException
      * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws \Exception
      */
     public function runSimplePublishTest(string $clientID = null) : void
     {
@@ -114,9 +115,9 @@ class Service
         $subject = self::$defaultChannelName;
         $data = 'Foo!';
         
-        $r = $connection->publish($subject, $data);
+        $request = $connection->publish($subject, $data);
         
-        $gotAck = $r->wait();
+        $gotAck = $request->wait();
         
         $statusResponse = $gotAck
             ? 'Acknowledged'
@@ -132,6 +133,7 @@ class Service
      *
      * @throws \NatsStreaming\Exceptions\ConnectException
      * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws \Exception
      */
     public function runPublishTest(string $channelName = null) : void
     {
@@ -173,6 +175,7 @@ class Service
      *
      * @throws \NatsStreaming\Exceptions\ConnectException
      * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws \Exception
      */
     public function runSimpleSubscribeTest(?string $channel = null) : void
     {
@@ -198,6 +201,7 @@ class Service
      *
      * @throws \NatsStreaming\Exceptions\ConnectException
      * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws \Exception
      */
     public function runMultipleChannelSimpleSubscribeTest(string ...$channels) : void
     {
@@ -235,6 +239,7 @@ class Service
      *
      * @throws \NatsStreaming\Exceptions\ConnectException
      * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws \Exception
      */
     public function runSubscribeTest(?string $channelName = null) : void
     {
@@ -254,47 +259,74 @@ class Service
         $subscription->wait(1);
         
         // not explicitly needed
-        $subscription->unsubscribe(); // or $sub->close();
+        $subscription->unsubscribe(); // or $subscription->close();
         
         $connection->close();
     }
     
     /**
-     * @param string|null $clientID
+     * @param null|string $channelName
      *
      * @throws \NatsStreaming\Exceptions\ConnectException
      * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws \Exception
      */
-    public function runSimpleQueueGroupSubscribeTest(string $clientID = null) : void
+    public function runSimpleQueueGroupSubscribeTest(?string $channelName = null) : void
     {
-        $connection = $this->createConnection($clientID);
+        $connection = $this->createConnection();
         
         $connection->connect();
         
         $subOptions = new SubscriptionOptions();
         $subOptions->setStartAt(StartPosition::NewOnly());
         
-        $subjects = 'some.channel';
+        $channel = $channelName ?? self::$defaultChannelName;
         $queue = 'some.queue';
         $callback = function ($message) {
             \printf($message);
         };
         
-        $sub = $connection->queueSubscribe($subjects, $queue, $callback, $subOptions);
+        $subscription = $connection->queueSubscribe($channel, $queue, $callback, $subOptions);
         
-        $sub->wait(1);
+        $subscription->wait(1);
         
         // not explicitly needed
-        $sub->close(); // or $sub->unsubscribe();
+        $subscription->close(); // or $subscription->unsubscribe();
         
         $connection->close();
-        
     }
     
-    public function runQueueGroupSubscribeTest() : void
+    /**
+     * @param null|string $channelName
+     *
+     * @throws \NatsStreaming\Exceptions\ConnectException
+     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws \Exception
+     */
+    public function runQueueGroupSubscribeTest(?string $channelName = null) : void
     {
-        // TODO: Implement runQueueGroupSubscribeTest() method.
-        throw new \BadMethodCallException(__METHOD__ . ' not yet implemented!');
+        $connection = $this->createConnection();
+        
+        $connection->connect();
+        
+        $subOptions = new SubscriptionOptions();
+        $subOptions->setStartAt(StartPosition::NewOnly());
+        
+        $adapter = $this->createStreamingConnection($connection);
+        
+        $channel = $channelName ?? self::$defaultChannelName;
+        $queue = 'some.queue';
+        
+        $subscriber = new SubscriberTest();
+        
+        $subscription = $adapter->groupSubscribe($channel, $queue, $subscriber, $subOptions);
+        
+        $subscription->wait(1);
+        
+        // not explicitly needed
+        $subscription->close(); // or $subscription->unsubscribe();
+        
+        $connection->close();
     }
     
     /**
