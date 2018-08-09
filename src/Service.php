@@ -69,12 +69,6 @@ class Service
         $this->name = $name;
     }
     
-    public function run() : void
-    {
-        // TODO: Implement run() method.
-        throw new \BadMethodCallException(__METHOD__ . ' not yet implemented!');
-    }
-    
     /**
      * @return string
      */
@@ -299,7 +293,7 @@ class Service
     
     public function runQueueGroupSubscribeTest() : void
     {
-        // TODO: Implement run() method.
+        // TODO: Implement runQueueGroupSubscribeTest() method.
         throw new \BadMethodCallException(__METHOD__ . ' not yet implemented!');
     }
     
