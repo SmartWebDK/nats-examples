@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a9cdbf1183cc69fd944295588b81767a",
-    "content-hash": "01bd9499ae53b58e979295015516b436",
+    "hash": "896b5c2d7c68255f3cb19d2375a95cb7",
+    "content-hash": "b09e3bf9071063c9cde0becfba6ed6f7",
     "packages": [
         {
             "name": "byrnedo/php-nats-streaming",
@@ -273,6 +273,229 @@
             ],
             "description": "A nats.io client in PHP",
             "time": "2018-06-09 15:32:07"
+        },
+        {
+            "name": "smartweb/cloud-events-nats",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SmartWebDK/cloud-events-nats.git",
+                "reference": "be69d9ceb3458118cad72ea5f0c2e557e3e75aad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SmartWebDK/cloud-events-nats/zipball/be69d9ceb3458118cad72ea5f0c2e557e3e75aad",
+                "reference": "be69d9ceb3458118cad72ea5f0c2e557e3e75aad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.20"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SmartWeb\\CloudEvents\\Nats\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Nicolai Agersbæk",
+                    "email": "na@smartweb.dk"
+                }
+            ],
+            "description": "PHP implementation of the NATS Transport Binding for CloudEvents specification.",
+            "support": {
+                "source": "https://github.com/SmartWebDK/cloud-events-nats/tree/master",
+                "issues": "https://github.com/SmartWebDK/cloud-events-nats/issues"
+            },
+            "time": "2018-08-09 08:45:23"
+        },
+        {
+            "name": "smartweb/nats",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SmartWebDK/nats.git",
+                "reference": "2233791b7bf75cc215c85b3a548a37da59018117"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SmartWebDK/nats/zipball/2233791b7bf75cc215c85b3a548a37da59018117",
+                "reference": "2233791b7bf75cc215c85b3a548a37da59018117",
+                "shasum": ""
+            },
+            "require": {
+                "byrnedo/php-nats-streaming": "^0.2.4",
+                "php": ">=7.1.20",
+                "repejota/nats": "^0.8.7",
+                "smartweb/cloud-events-nats": "dev-master",
+                "symfony/serializer": "^4.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7",
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "SmartWeb\\Nats\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "SmartWeb\\Nats\\Tests\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Nicolai Agersbæk",
+                    "email": "na@smartweb.dk"
+                }
+            ],
+            "description": "PHP implementation of the NATS messaging protocol using the CloudEvents specification.",
+            "support": {
+                "source": "https://github.com/SmartWebDK/nats/tree/master",
+                "issues": "https://github.com/SmartWebDK/nats/issues"
+            },
+            "time": "2018-08-09 09:03:48"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+                "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2018-08-06 14:22:27"
+        },
+        {
+            "name": "symfony/serializer",
+            "version": "v4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/serializer.git",
+                "reference": "2f134b6cad1cefa0613a4339b08e480124914c85"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/2f134b6cad1cefa0613a4339b08e480124914c85",
+                "reference": "2f134b6cad1cefa0613a4339b08e480124914c85",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "conflict": {
+                "phpdocumentor/type-resolver": "<0.2.1",
+                "symfony/dependency-injection": "<3.4",
+                "symfony/property-access": "<3.4",
+                "symfony/property-info": "<3.4",
+                "symfony/yaml": "<3.4"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.0",
+                "doctrine/cache": "~1.0",
+                "phpdocumentor/reflection-docblock": "^3.0|^4.0",
+                "symfony/cache": "~3.4|~4.0",
+                "symfony/config": "~3.4|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/http-foundation": "~3.4|~4.0",
+                "symfony/property-access": "~3.4|~4.0",
+                "symfony/property-info": "~3.4|~4.0",
+                "symfony/validator": "~3.4|~4.0",
+                "symfony/yaml": "~3.4|~4.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
+                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
+                "psr/cache-implementation": "For using the metadata cache.",
+                "symfony/config": "For using the XML mapping loader.",
+                "symfony/http-foundation": "To use the DataUriNormalizer.",
+                "symfony/property-access": "For using the ObjectNormalizer.",
+                "symfony/property-info": "To deserialize relations.",
+                "symfony/yaml": "For using the default YAML mapping loader."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Serializer\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Serializer Component",
+            "homepage": "https://symfony.com",
+            "time": "2018-07-26 09:10:45"
         }
     ],
     "packages-dev": [
@@ -451,6 +674,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "smartweb/cloud-events-nats": 20,
+        "smartweb/nats": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,

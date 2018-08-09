@@ -7,10 +7,21 @@
             "email": "na@smartweb.dk"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/SmartWebDK/cloud-events-nats"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/SmartWebDK/nats"
+        }
+    ],
     "type": "project",
     "require": {
         "php": ">=7.1.20",
-        "byrnedo/php-nats-streaming": "^0.2.4"
+        "smartweb/cloud-events-nats": "dev-master",
+        "smartweb/nats": "dev-master"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
