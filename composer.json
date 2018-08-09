@@ -1,0 +1,32 @@
+{
+    "name": "smartweb/nats-test",
+    "description": "Tests of using NATS streaming message protocol in PHP.",
+    "authors": [
+        {
+            "name": "Nicolai Agersbæk",
+            "email": "na@smartweb.dk"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nicolai-agersbaek/cloud-events"
+        }
+    ],
+    "type": "project",
+    "require": {
+        "php": ">=7.1.20",
+        "byrnedo/php-nats-streaming": "^0.2.4"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "platform": {
+            "php": "7.1.20",
+            "ext-mbstring": "0.1"
+        }
+    }
+}

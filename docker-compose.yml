@@ -1,0 +1,21 @@
+version: '2.1'
+
+services:
+
+  bash:
+    image: smartweb/php:7.1-cli-dev
+    entrypoint: 'bash'
+    working_dir: '/var/www/html'
+    volumes:
+      - .:/var/www/html
+    networks:
+      - nats-test
+
+  nats-streaming:
+    image: nats-streaming
+    command: "-p 4223 -m 8223"
+    networks:
+      - nats-test
+
+networks:
+    nats-test:
