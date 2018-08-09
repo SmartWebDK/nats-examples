@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "896b5c2d7c68255f3cb19d2375a95cb7",
+    "hash": "2241dd5052a33f542ebf4a3a7d25ef30",
     "content-hash": "b09e3bf9071063c9cde0becfba6ed6f7",
     "packages": [
         {
@@ -316,12 +316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SmartWebDK/nats.git",
-                "reference": "2233791b7bf75cc215c85b3a548a37da59018117"
+                "reference": "61e9f6b587bef90118c906b317ed2bd98fb3c180"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SmartWebDK/nats/zipball/2233791b7bf75cc215c85b3a548a37da59018117",
-                "reference": "2233791b7bf75cc215c85b3a548a37da59018117",
+                "url": "https://api.github.com/repos/SmartWebDK/nats/zipball/61e9f6b587bef90118c906b317ed2bd98fb3c180",
+                "reference": "61e9f6b587bef90118c906b317ed2bd98fb3c180",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +357,7 @@
                 "source": "https://github.com/SmartWebDK/nats/tree/master",
                 "issues": "https://github.com/SmartWebDK/nats/issues"
             },
-            "time": "2018-08-09 09:03:48"
+            "time": "2018-08-09 09:18:55"
         },
         {
             "name": "symfony/polyfill-ctype",

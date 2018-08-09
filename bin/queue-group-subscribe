@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types = 1);
+
+\set_time_limit(0);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$port = 4223;
+$host = 'nats-streaming';
+$options = new \Nats\ConnectionOptions(\compact('port', 'host'));
+
+$serviceName = 'fancy-group-service';
+$service = new \SmartWeb\NatsTest\Service($serviceName, $options);
+
+$service->runSimpleQueueGroupSubscribeTest();

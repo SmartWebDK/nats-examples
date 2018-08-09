@@ -32,11 +32,17 @@
         }
     },
     "config": {
+        "bin-dir": "nats-test-scripts",
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
             "php": "7.1.20",
             "ext-mbstring": "0.1"
         }
-    }
+    },
+    "bin": [
+        "bin/publish",
+        "bin/subscribe",
+        "bin/queue-group-subscribe"
+    ]
 }
