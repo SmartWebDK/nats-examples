@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9500014d0e936388e5652fcff0e89684",
-    "content-hash": "b09e3bf9071063c9cde0becfba6ed6f7",
+    "hash": "efec86a3b1f6f01187d519d97f29adac",
+    "content-hash": "f55db6cefe6227b844cf2e40a21f3586",
     "packages": [
         {
             "name": "byrnedo/php-nats-streaming",
@@ -276,16 +276,16 @@
         },
         {
             "name": "smartweb/cloud-events-nats",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SmartWebDK/cloud-events-nats.git",
-                "reference": "d466be19e373fc68611db74faa7627da0168575c"
+                "reference": "a1a36f4e84b66e1a98be9d0a2faf098723c33e19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SmartWebDK/cloud-events-nats/zipball/d466be19e373fc68611db74faa7627da0168575c",
-                "reference": "d466be19e373fc68611db74faa7627da0168575c",
+                "url": "https://api.github.com/repos/SmartWebDK/cloud-events-nats/zipball/a1a36f4e84b66e1a98be9d0a2faf098723c33e19",
+                "reference": "a1a36f4e84b66e1a98be9d0a2faf098723c33e19",
                 "shasum": ""
             },
             "require": {
@@ -305,10 +305,10 @@
             ],
             "description": "PHP implementation of the NATS Transport Binding for CloudEvents specification.",
             "support": {
-                "source": "https://github.com/SmartWebDK/cloud-events-nats/tree/master",
+                "source": "https://github.com/SmartWebDK/cloud-events-nats/tree/v1.0.0",
                 "issues": "https://github.com/SmartWebDK/cloud-events-nats/issues"
             },
-            "time": "2018-08-10 10:04:07"
+            "time": "2018-08-10 12:41:05"
         },
         {
             "name": "smartweb/nats",
@@ -316,19 +316,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SmartWebDK/nats.git",
-                "reference": "af8acdd0486503d5aa8ee40ec572c22708e6c7db"
+                "reference": "b8755a856ad0a3a3eae0cf2d06cfeffcc553062b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SmartWebDK/nats/zipball/af8acdd0486503d5aa8ee40ec572c22708e6c7db",
-                "reference": "af8acdd0486503d5aa8ee40ec572c22708e6c7db",
+                "url": "https://api.github.com/repos/SmartWebDK/nats/zipball/b8755a856ad0a3a3eae0cf2d06cfeffcc553062b",
+                "reference": "b8755a856ad0a3a3eae0cf2d06cfeffcc553062b",
                 "shasum": ""
             },
             "require": {
                 "byrnedo/php-nats-streaming": "^0.2.4",
                 "php": ">=7.1.20",
                 "repejota/nats": "^0.8.7",
-                "smartweb/cloud-events-nats": "dev-master",
+                "smartweb/cloud-events-nats": "^1.0",
                 "symfony/serializer": "^4.1"
             },
             "require-dev": {
@@ -357,7 +357,7 @@
                 "source": "https://github.com/SmartWebDK/nats/tree/master",
                 "issues": "https://github.com/SmartWebDK/nats/issues"
             },
-            "time": "2018-08-10 11:56:21"
+            "time": "2018-08-10 12:45:42"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -675,7 +675,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "smartweb/cloud-events-nats": 20,
         "smartweb/nats": 20,
         "roave/security-advisories": 20
     },
