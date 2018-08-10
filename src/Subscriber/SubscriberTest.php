@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace SmartWeb\NatsTest\Subscriber;
 
-use SmartWeb\CloudEvents\Nats\Payload\PayloadInterface;
+use SmartWeb\CloudEvents\Nats\Event\EventInterface;
 use SmartWeb\Nats\Subscriber\SubscriberInterface;
 
 /**
@@ -18,8 +18,8 @@ class SubscriberTest implements SubscriberInterface
     /**
      * @inheritDoc
      */
-    public function handle(PayloadInterface $payload) : void
+    public function handle(EventInterface $event) : void
     {
-        \var_dump($payload);
+        \var_dump($event);
     }
 }

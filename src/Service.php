@@ -10,16 +10,15 @@ use NatsStreaming\ConnectionOptions as StreamingConnectionOptions;
 use NatsStreaming\Subscription;
 use NatsStreaming\SubscriptionOptions;
 use NatsStreamingProtos\StartPosition;
-use SmartWeb\CloudEvents\Nats\Payload\Data\ArrayData;
-use SmartWeb\CloudEvents\Nats\Payload\PayloadBuilder;
+use SmartWeb\CloudEvents\Nats\Event\EventBuilder;
 use SmartWeb\Nats\Connection\StreamingConnection;
 use SmartWeb\Nats\Connection\StreamingConnectionInterface;
+use SmartWeb\Nats\Event\Serialization\EventDecoder;
+use SmartWeb\Nats\Event\Serialization\EventDenormalizer;
+use SmartWeb\Nats\Event\Serialization\EventNormalizer;
 use SmartWeb\Nats\Message\Serialization\MessageDecoder;
 use SmartWeb\Nats\Message\Serialization\MessageDenormalizer;
 use SmartWeb\Nats\Message\Serialization\MessageDeserializer;
-use SmartWeb\Nats\Payload\Serialization\PayloadDecoder;
-use SmartWeb\Nats\Payload\Serialization\PayloadDenormalizer;
-use SmartWeb\Nats\Payload\Serialization\PayloadNormalizer;
 use SmartWeb\NatsTest\Subscriber\SubscriberTest;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Serializer;
@@ -144,18 +143,16 @@ class Service
         
         $channel = $channelName ?? self::$defaultChannelName;
         
-        $data = new ArrayData(
-            [
-                'foo' => 'bar',
-            ]
-        );
-        $payload = PayloadBuilder::create()
-                                 ->setEventType('some.event')
-                                 ->setCloudEventsVersion('0.1.0')
-                                 ->setSource('some.source')
-                                 ->setEventId('some.event.id')
-                                 ->setData($data)
-                                 ->build();
+        $data = [
+            'foo' => 'bar',
+        ];
+        $payload = EventBuilder::create()
+                               ->setEventType('some.event')
+                               ->setCloudEventsVersion('0.1.0')
+                               ->setSource('some.source')
+                               ->setEventId('some.event.id')
+                               ->setData($data)
+                               ->build();
         
         $request = $adapter->publish($channel, $payload);
         
@@ -357,20 +354,20 @@ class Service
         
         $messageDeserializer = new MessageDeserializer($messageDecoder, $messageDenormalizer);
         
-        $payloadNormalizer = new PayloadNormalizer();
-        $payloadEncoder = new JsonEncode();
-        $payloadDecoder = new PayloadDecoder();
-        $payloadDenormalizer = new PayloadDenormalizer();
+        $eventNormalizer = new EventNormalizer();
+        $eventEncoder = new JsonEncode();
+        $eventDecoder = new EventDecoder();
+        $eventDenormalizer = new EventDenormalizer();
         
-        $payloadSerializer = new Serializer(
-            [$payloadNormalizer, $payloadDenormalizer],
-            [$payloadEncoder, $payloadDecoder]
+        $eventSerializer = new Serializer(
+            [$eventNormalizer, $eventDenormalizer],
+            [$eventEncoder, $eventDecoder]
         );
         
         return new StreamingConnection(
             $connection,
             $messageDeserializer,
-            $payloadSerializer
+            $eventSerializer
         );
     }
 }
