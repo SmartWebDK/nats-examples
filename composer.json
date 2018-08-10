@@ -32,7 +32,7 @@
         }
     },
     "config": {
-        "bin-dir": "nats-test-scripts",
+        "bin-dir": "nats-examples",
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
