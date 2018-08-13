@@ -21,7 +21,7 @@
     "require": {
         "php": ">=7.1.20",
         "smartweb/cloud-events-nats": "^1.0.0",
-        "smartweb/nats": "dev-master"
+        "smartweb/nats": "0.1.*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
