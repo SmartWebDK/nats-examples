@@ -15,6 +15,8 @@ $options = new \Nats\ConnectionOptions(
 $serviceName = 'fancy-publish-service';
 $service = new \SmartWeb\NatsTest\Service($serviceName, $options);
 
-$service->runPublishTest();
+
+$service->runPublishTest(null, 40);
+
 //\sleep(2);
 //$service->runPublishTest('other.channel');

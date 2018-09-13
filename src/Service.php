@@ -13,6 +13,7 @@ use NatsStreaming\Subscription;
 use NatsStreaming\SubscriptionOptions;
 use NatsStreamingProtos\StartPosition;
 use SmartWeb\CloudEvents\Nats\Event\EventBuilder;
+use SmartWeb\CloudEvents\Nats\Event\EventInterface;
 use SmartWeb\Nats\Connection\StreamingConnection;
 use SmartWeb\Nats\Connection\StreamingConnectionInterface;
 use SmartWeb\Nats\Event\Serialization\EventDecoder;
@@ -131,20 +132,22 @@ class Service
     
     /**
      * @param string|null $channelName
+     * @param int|null    $count
      *
      * @throws ConnectException
      * @throws TimeoutException
-     * @throws \Exception
      */
-    public function runPublishTest(string $channelName = null) : void
+    public function runPublishTest(string $channelName = null, int $count = null) : void
     {
+        $channel = $channelName ?? self::$defaultChannelName;
+        $count = $count ?? 20;
+        
         $connection = $this->createConnection();
         $connection->connect();
-        
+    
         $adapter = $this->createStreamingConnection($connection);
-        
-        $channel = $channelName ?? self::$defaultChannelName;
-        
+    
+    
         $data = [
             'foo' => 'bar',
         ];
@@ -155,18 +158,33 @@ class Service
                                ->setEventId('some.event.id')
                                ->setData($data)
                                ->build();
+    
+        for ($i = 0; $i < $count; $i ++) {
+            $this->publish($adapter, $channel, $payload);
+        }
         
-        $request = $adapter->publish($channel, $payload);
+        $connection->close();
+    }
+    
+    /**
+     * @param StreamingConnection $connection
+     * @param string              $channel
+     * @param EventInterface      $event
+     */
+    private function publish(StreamingConnection $connection, string $channel, EventInterface $event) : void
+    {
+        static $count = 0;
+        $count++;
         
+        $request = $connection->publish($channel, $event);
+    
         $gotAck = $request->wait();
-        
+    
         $statusResponse = $gotAck
             ? 'Acknowledged'
             : 'Not acknowledged';
-        
-        \printf("$statusResponse\r\n");
-        
-        $connection->close();
+    
+        \printf("{$statusResponse}({$count})\r\n");
     }
     
     /**
@@ -252,7 +270,7 @@ class Service
         
         $channel = $channelName ?? self::$defaultChannelName;
         
-        $subscriber = new SubscriberTest();
+        $subscriber = new SubscriberTest(0.100);
         
         $subscription = $adapter->subscribe($channel, $subscriber, $subOptions);
         $subscription->wait(1);
@@ -309,21 +327,18 @@ class Service
         $connection->connect();
         
         $subOptions = new SubscriptionOptions();
-        $subOptions->setStartAt(StartPosition::NewOnly());
+        $subOptions->setStartAt(StartPosition::LastReceived());
         
         $adapter = $this->createStreamingConnection($connection);
         
         $channel = $channelName ?? self::$defaultChannelName;
         $queue = 'some.queue';
         
-        $subscriber = new SubscriberTest();
+        $subscriber = new SubscriberTest(0.1);
         
         $subscription = $adapter->groupSubscribe($channel, $queue, $subscriber, $subOptions);
         
-        $subscription->wait(1);
-        
-        // not explicitly needed
-        $subscription->close(); // or $subscription->unsubscribe();
+        $connection->wait();
         
         $connection->close();
     }
