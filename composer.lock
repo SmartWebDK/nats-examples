@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "efec86a3b1f6f01187d519d97f29adac",
-    "content-hash": "f55db6cefe6227b844cf2e40a21f3586",
+    "hash": "3cbf5078177c7aa01d14674fe82353ba",
+    "content-hash": "2ee9afa1c32c3559cf637096c3af7ff5",
     "packages": [
         {
             "name": "byrnedo/php-nats-streaming",
@@ -316,12 +316,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SmartWebDK/nats.git",
-                "reference": "b8755a856ad0a3a3eae0cf2d06cfeffcc553062b"
+                "reference": "400097078c88273c781a08a854a483432ddf2536"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SmartWebDK/nats/zipball/b8755a856ad0a3a3eae0cf2d06cfeffcc553062b",
-                "reference": "b8755a856ad0a3a3eae0cf2d06cfeffcc553062b",
+                "url": "https://api.github.com/repos/SmartWebDK/nats/zipball/400097078c88273c781a08a854a483432ddf2536",
+                "reference": "400097078c88273c781a08a854a483432ddf2536",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +357,7 @@
                 "source": "https://github.com/SmartWebDK/nats/tree/master",
                 "issues": "https://github.com/SmartWebDK/nats/issues"
             },
-            "time": "2018-08-10 12:45:42"
+            "time": "2018-08-16 11:01:56"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -419,7 +419,7 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
@@ -505,12 +505,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "f834fd02a512672f298ed7c59e44e46621b6423d"
+                "reference": "0abc14e0df387fe74b4b32e0b8647d1639256d38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/f834fd02a512672f298ed7c59e44e46621b6423d",
-                "reference": "f834fd02a512672f298ed7c59e44e46621b6423d",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0abc14e0df387fe74b4b32e0b8647d1639256d38",
+                "reference": "0abc14e0df387fe74b4b32e0b8647d1639256d38",
                 "shasum": ""
             },
             "conflict": {
@@ -647,7 +647,7 @@
                 "zendframework/zend-validator": ">=2.3,<2.3.6",
                 "zendframework/zend-view": ">=2,<2.2.7|>=2.3,<2.3.1",
                 "zendframework/zend-xmlrpc": ">=2.1,<2.1.6|>=2.2,<2.2.6",
-                "zendframework/zendframework": ">=2,<2.4.11|>=2.5,<2.5.1",
+                "zendframework/zendframework": "<2.5.1",
                 "zendframework/zendframework1": "<1.12.20",
                 "zendframework/zendopenid": ">=2,<2.0.2",
                 "zendframework/zendxml": ">=1,<1.0.1",
@@ -669,7 +669,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2018-08-10 10:05:21"
+            "time": "2018-08-14 15:39:17"
         }
     ],
     "aliases": [],
@@ -681,7 +681,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.1.20"
+        "php": ">=7.1.20",
+        "ext-mbstring": "*"
     },
     "platform-dev": [],
     "platform-overrides": {

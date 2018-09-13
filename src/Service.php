@@ -7,6 +7,8 @@ namespace SmartWeb\NatsTest;
 use Nats\ConnectionOptions;
 use NatsStreaming\Connection;
 use NatsStreaming\ConnectionOptions as StreamingConnectionOptions;
+use NatsStreaming\Exceptions\ConnectException;
+use NatsStreaming\Exceptions\TimeoutException;
 use NatsStreaming\Subscription;
 use NatsStreaming\SubscriptionOptions;
 use NatsStreamingProtos\StartPosition;
@@ -102,8 +104,8 @@ class Service
     /**
      * @param string|null $clientID
      *
-     * @throws \NatsStreaming\Exceptions\ConnectException
-     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws ConnectException
+     * @throws TimeoutException
      * @throws \Exception
      */
     public function runSimplePublishTest(string $clientID = null) : void
@@ -130,8 +132,8 @@ class Service
     /**
      * @param string|null $channelName
      *
-     * @throws \NatsStreaming\Exceptions\ConnectException
-     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws ConnectException
+     * @throws TimeoutException
      * @throws \Exception
      */
     public function runPublishTest(string $channelName = null) : void
@@ -170,8 +172,8 @@ class Service
     /**
      * @param null|string $channel
      *
-     * @throws \NatsStreaming\Exceptions\ConnectException
-     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws ConnectException
+     * @throws TimeoutException
      * @throws \Exception
      */
     public function runSimpleSubscribeTest(?string $channel = null) : void
@@ -196,8 +198,8 @@ class Service
     /**
      * @param string[] $channels
      *
-     * @throws \NatsStreaming\Exceptions\ConnectException
-     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws ConnectException
+     * @throws TimeoutException
      * @throws \Exception
      */
     public function runMultipleChannelSimpleSubscribeTest(string ...$channels) : void
@@ -234,8 +236,8 @@ class Service
     /**
      * @param null|string $channelName
      *
-     * @throws \NatsStreaming\Exceptions\ConnectException
-     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws ConnectException
+     * @throws TimeoutException
      * @throws \Exception
      */
     public function runSubscribeTest(?string $channelName = null) : void
@@ -264,8 +266,8 @@ class Service
     /**
      * @param null|string $channelName
      *
-     * @throws \NatsStreaming\Exceptions\ConnectException
-     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws ConnectException
+     * @throws TimeoutException
      * @throws \Exception
      */
     public function runSimpleQueueGroupSubscribeTest(?string $channelName = null) : void
@@ -296,8 +298,8 @@ class Service
     /**
      * @param null|string $channelName
      *
-     * @throws \NatsStreaming\Exceptions\ConnectException
-     * @throws \NatsStreaming\Exceptions\TimeoutException
+     * @throws ConnectException
+     * @throws TimeoutException
      * @throws \Exception
      */
     public function runQueueGroupSubscribeTest(?string $channelName = null) : void
@@ -349,11 +351,6 @@ class Service
      */
     private function createStreamingConnection(Connection $connection) : StreamingConnection
     {
-        $messageDecoder = new MessageDecoder();
-        $messageDenormalizer = new MessageDenormalizer();
-        
-        $messageDeserializer = new MessageDeserializer($messageDecoder, $messageDenormalizer);
-        
         $eventNormalizer = new EventNormalizer();
         $eventEncoder = new JsonEncode();
         $eventDecoder = new EventDecoder();
@@ -366,7 +363,6 @@ class Service
         
         return new StreamingConnection(
             $connection,
-            $messageDeserializer,
             $eventSerializer
         );
     }
